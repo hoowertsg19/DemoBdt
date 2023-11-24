@@ -5,7 +5,8 @@ import lombok.Setter;
 import org.openxava.annotations.*;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.util.Date;
+import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -13,16 +14,18 @@ import java.util.List;
 @Getter
 @Setter
 @Views({
-        @View(name = "Simple", members = "nombres, apellidos") // Ajusta los campos según lo que desees mostrar
+        @View(name = "Simple", members = "nombres, apellidos")
 })
 public class Estudiante extends ID {
 
     @Column(name = "nombres", length = 100, nullable = false)
     @Required
+    @Size(min = 2, max = 100)
     private String nombres;
 
     @Column(name = "apellidos", length = 100, nullable = false)
     @Required
+    @Size(min = 2, max = 100)
     private String apellidos;
 
     @Enumerated(EnumType.STRING)
@@ -39,13 +42,14 @@ public class Estudiante extends ID {
     @JoinColumn(name = "fk_num_celular")
     private NumCelular numCelular;
 
+
     @Column(name = "fecha_nacimiento")
-    @Temporal(TemporalType.DATE)
-    @Required
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
+
 
     @Column(name = "correo_electronico", length = 100)
     @Email
+    @Required
     private String correoElectronico;
 
     @ManyToOne(fetch = FetchType.LAZY)

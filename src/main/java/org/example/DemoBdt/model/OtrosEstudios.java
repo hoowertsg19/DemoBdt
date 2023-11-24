@@ -13,7 +13,7 @@ public class OtrosEstudios extends ID {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_egresado", referencedColumnName = "id")
-    @ReferenceView("Simple") // Utiliza una vista sencilla para el egresado
+    @ReferenceView("Simple")
     @Required
     private Egresado egresado;
 
@@ -27,7 +27,7 @@ public class OtrosEstudios extends ID {
 
     @Column(name = "referencia", length = 255)
     @Stereotype("MEMO")
-    private String referencia; // Un campo adicional para una descripción o referencia sobre el curso
+    private String referencia;
 
 
 }

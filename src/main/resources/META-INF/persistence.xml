@@ -43,6 +43,6 @@
         <properties>
 			<property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost:1666"/>
         </properties>
-    </persistence-unit>    
-    
+    </persistence-unit>
+
 </persistence>

@@ -41,15 +41,15 @@ public class VacantePasantia extends ID {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "empresa_id", referencedColumnName = "id")
-    @ReferenceView("Simple") // Utiliza una vista sencilla para la empresa
+    @ReferenceView("Simple")
     private Empresa empresa;
 
-    // Consider adding a status field to indicate if the vacancy is active, filled, etc.
+
     @Column(name = "estado", length = 50)
     @Enumerated(EnumType.STRING)
     private EstadoVacante estado;
 
-    // Consider adding a field for requirements or qualifications
+
     @Column(name = "requisitos", length = 1000)
     @Stereotype("MEMO")
     private String requisitos;

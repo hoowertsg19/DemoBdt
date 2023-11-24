@@ -9,27 +9,46 @@ import javax.persistence.*;
 @Table(name = "estudiante_idiomas")
 @Getter
 @Setter
-@Views({
-        @View(name = "Simple", members = "nombres, apellidos, sexo, fechaNacimiento, correoElectronico") // Ajusta los campos según tu modelo
-})
 public class EstudianteIdiomas extends ID {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_estudiante", referencedColumnName = "id")
-    @ReferenceView("Simple") // Utiliza una vista sencilla para el estudiante
+    @ReferenceView("Simple")
     @Required
     private Estudiante estudiante;
 
     @Column(name = "idioma", length = 50)
     @Required
-    @DisplaySize(20) // Tamaño visual en la UI
-    private String idioma;
+    @Enumerated(EnumType.STRING) // Usando Enum para definir una lista de idiomas
+    private Idioma idioma;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "nivel", length = 50)
     @Required
-    private String nivel;
+    private NivelIdioma nivel;
 
-    // Getters y setters generados por Lombok
+    // Enum para los idiomas
+    public enum Idioma {
+        INGLES, MANDARIN, ESPANOL, FRANCES, ARABE, HINDI, BENGALI, PORTUGUES, RUSO, JAPONES
+    }
 
-    // Métodos adicionales si es necesario
+    // Enum para los niveles de idioma
+    public enum NivelIdioma {
+        PRE_INTERMEDIO("A2-B1: Pre-intermedio"),
+        INTERMEDIO("B1: Intermedio"),
+        INTERMEDIO_ALTO("B2: Intermedio-Alto"),
+        AVANZADO("C1-C2: Avanzado");
+
+        private String descripcion;
+
+        NivelIdioma(String descripcion) {
+            this.descripcion = descripcion;
+        }
+
+        public String getDescripcion() {
+            return descripcion;
+        }
+    }
+
+    // Getters y setters
 }

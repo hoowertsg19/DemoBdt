@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Views({
-        @View(name = "Simple", members = "nombres, apellidos") // Ajusta los campos según lo que desees mostrar
+        @View(name = "Simple", members = "nombres, apellidos")
 })
 public class Egresado extends ID {
 

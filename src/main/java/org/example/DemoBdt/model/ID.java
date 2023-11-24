@@ -2,13 +2,8 @@ package org.example.DemoBdt.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 import org.openxava.annotations.Hidden;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 @MappedSuperclass
 @Getter
@@ -16,10 +11,8 @@ import javax.persistence.MappedSuperclass;
 public class ID {
 
     @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name="system-uuid"
-            ,strategy = "uuid")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(length = 8)
     @Hidden
-    private String id;
+    private Long id;
 }
